@@ -3,13 +3,17 @@ package br.senai.sp.jandira.paginalogin
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowColumnScopeInstance.align
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.absolutePadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,6 +21,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -33,12 +38,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
@@ -516,43 +524,129 @@ fun TelaSp() {
 @Composable
 fun Tela3(){
 
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(45.dp)
-            .width(10.dp),
-        horizontalArrangement = Arrangement.End
+    Column {
 
-    ){
-        Box (
-            modifier = Modifier
-                .width(150.dp)
-                .height(350.dp)
-                .offset(y = -15.dp, x = 20.dp)
-                .background(
-                    color = Color(0xffc007df),
-                    shape = RoundedCornerShape(100.dp),
-                ))
-    }
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp),
-            shape = RoundedCornerShape(0.dp)
-    ) {
-        Image(
-            painterResource(id = R.drawable.paris),
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-            ,
-            contentDescription = "Torre",
-            contentScale = ContentScale.Crop
-        )
-        Row {
+                .height(45.dp)
+                .width(10.dp),
+                horizontalArrangement = Arrangement.End
+
+        ){
 
         }
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .offset(y = -45.dp)
+                .height(200.dp),
+            shape = RoundedCornerShape(0.dp)
+
+        ) {
+            Image(
+                painterResource(id = R.drawable.paris),
+                modifier = Modifier
+                    .fillMaxWidth(),
+                contentDescription = "Torre",
+                contentScale = ContentScale.Crop,
+
+            )
+        }
+        Column (
+            modifier = Modifier
+                .padding(20.dp)
+        ){
+            Row {
+                Text(text = "You're in Paris",
+                    modifier = Modifier
+                        .offset(y = -115.dp)
+                    ,
+                    fontSize = 15.sp,
+                    color = Color(0xFFFFFFFF,
+                        )
+                )
+
+
+            }
+            Text(text = "My Trips",
+                modifier = Modifier
+                    .offset(y = -120.dp)
+
+                ,
+                fontWeight = FontWeight.ExtraBold,
+                fontSize = 23.sp,
+                color = Color(0xFFFFFFFF,
+                )
+            )
+        }
+
+        Row {
+
+            Text(text = "Categories",
+                color = Color(0xFF3A3636),
+                modifier = Modifier
+                    .offset(y = -147.dp)
+                    .padding(20.dp)
+                )
+
+
+
+
+        }
+
+        Spacer(modifier = Modifier.height(100.dp))
+        LazyRow (
+            modifier = Modifier
+                .offset(y = -260.dp)
+        ){
+            items(3){
+                Card(
+                    modifier = Modifier
+                        .width(140.dp)
+                        .height(96.dp)
+                        .offset(y = 20.dp)
+
+                        .padding(end = 8.dp),
+                    colors = CardDefaults
+                        .cardColors(
+                            containerColor = Color(0xFFCF06F0)
+                        ),
+                    border = BorderStroke(width = 2.dp,
+                        brush = Brush.horizontalGradient(listOf(Color(0x52413C47), Color(0x7738314B)
+                        )))
+                ) {
+                    Row (modifier = Modifier.fillMaxSize(),
+
+                    ){
+                        Card{
+                            Image(painter = painterResource(id = R.drawable.montanha),
+                                contentDescription = "",
+                                Modifier
+                                    .size(50.dp)
+                                    .background(color = Color(0xFFCF06F0))
+                            )
+                        }
+                        Row (
+                            modifier = Modifier.align(Alignment.CenterVertically)
+                        ){
+                            Text(
+                                text = "Montain",
+                                fontSize = 20.sp,
+                                modifier = Modifier
+                                    .align(alignment = Alignment.CenterVertically),
+                                color = Color(0xFFCAB6E7,
+                                    )
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
     }
-}
+    }
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
