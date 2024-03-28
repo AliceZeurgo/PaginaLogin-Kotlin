@@ -34,12 +34,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import br.senai.sp.jandira.paginalogin.ui.theme.PaginaLoginTheme
 
 class MainActivity : ComponentActivity() {
@@ -506,6 +508,52 @@ fun TelaSp() {
 }
 
 
+
+
+
+
+
+@Composable
+fun Tela3(){
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(45.dp)
+            .width(10.dp),
+        horizontalArrangement = Arrangement.End
+
+    ){
+        Box (
+            modifier = Modifier
+                .width(150.dp)
+                .height(350.dp)
+                .offset(y = -15.dp, x = 20.dp)
+                .background(
+                    color = Color(0xffc007df),
+                    shape = RoundedCornerShape(100.dp),
+                ))
+    }
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp),
+            shape = RoundedCornerShape(0.dp)
+    ) {
+        Image(
+            painterResource(id = R.drawable.paris),
+            modifier = Modifier
+                .fillMaxWidth()
+            ,
+            contentDescription = "Torre",
+            contentScale = ContentScale.Crop
+        )
+        Row {
+
+        }
+    }
+}
+
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
@@ -522,6 +570,12 @@ fun Tela2Preview() {
     }
 }
 
-
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun Tela3Preview() {
+    PaginaLoginTheme {
+        Tela3()
+    }
+}
 
 
